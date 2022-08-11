@@ -33,7 +33,9 @@ pipeline {
                         sh 'helm version'
                         sh 'ls'
                         //sh "kubectl create ns jupyter"
-                        sh "helm install jhub-datascience https://charts.bitnami.com/bitnami/jupyterhub -f ./jupyter-bitnami-values.yaml -n jupyter"
+                        sh "helm repo add bitnami https://charts.bitnami.com/bitnami/jupyterhub"
+                        sh "helm repo update"
+                        sh "helm install jhub-datascience bitnami/jupyterhub -f jupyter-bitnami-values.yaml -n jupyter"
                     // }               
 
                 }
