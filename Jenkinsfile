@@ -31,7 +31,8 @@ pipeline {
                         // sh 'tar -xvzf helm-v3.6.1-linux-amd64.tar.gz'
                         // sh 'sudo cp linux-amd64/helm /usr/bin'
                         sh 'helm version'
-                        sh "helm list"
+                        sh "kubectl create ns jupyter"
+                        sh "helm install jhub-datascience bitnami/jupyterhub -f jupyter-bitnami-values.yaml -n jupyter"
                     // }               
 
                 }
