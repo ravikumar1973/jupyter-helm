@@ -32,7 +32,7 @@ pipeline {
                         // sh 'sudo cp linux-amd64/helm /usr/bin'
                         sh 'helm version'
                         sh "kubectl create ns jupyter"
-                        sh "helm install jhub-datascience bitnami/jupyterhub -f jupyter-bitnami-values.yaml -n jupyter"
+                        sh "helm install jhub-datascience https://charts.bitnami.com/bitnami/jupyterhub -f jupyter-bitnami-values.yaml -n jupyter"
                     // }               
 
                 }
