@@ -4,7 +4,7 @@ pipeline {
         //cloud 'kubernetes'
             containerTemplate {
             name 'jupyter-helm'
-            image 'ventx/helm-awscli-kubectl-terraform'
+            image 'jshimko/kube-tools-aws:latest'
             ttyEnabled true
             command 'cat'
             }
