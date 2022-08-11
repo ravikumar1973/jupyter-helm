@@ -4,25 +4,30 @@ pipeline {
         //cloud 'kubernetes'
             containerTemplate {
             name 'jupyter-helm'
-            image 'ibmcom/ibm-cloud-developer-tools-amd64'
+            image 'amazon/aws-cli'
             ttyEnabled true
             command 'cat'
             }
         }
     }
 
+    environment {
+        AWS_ACCESS_KEY_ID =  credentials('aws_access_key_id')
+        AWS_SECRET_ACCESS_KEY = credentials('aws_secret_access_key')
+    }
+
         stages {
             stage('Helm init'){
                 steps {
-                    withCredentials([file(credentialsId: 'kubeconfig', variable: 'config')]) {
-                        sh "export KUBECONFIG=\${config}"
+                    // withCredentials([file(credentialsId: 'kubeconfig', variable: 'config')]) {
+                    //     sh "export KUBECONFIG=\${config}"
                         //sh "kubectl create ns jupyter"
                         //sh "kubectl config set-context arn:aws:eks:eu-north-1:586301231170:cluster/eks_cluster_devops --namespace=jupyter"  
                         //Deploy with Helm  echo "Deploying"  sh "helm upgrade --install road-dashboard -f values.${ENV}.yaml --set tag=$TAG --namespace ${namespace}"
-                        sh "sleep 30"
+                        sh "aws eks update-kubeconfig --name eks_cluster_devops"
                         sh "kubectl get no"
                         sh "helm list"
-                    }               
+                    // }               
 
                 }
             }   
