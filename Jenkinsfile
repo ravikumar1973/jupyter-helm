@@ -4,7 +4,7 @@ pipeline {
         //cloud 'kubernetes'
             containerTemplate {
             name 'jupyter-helm'
-            image 'alpine/helm'
+            image 'ibmcom/ibm-cloud-developer-tools-amd64'
             ttyEnabled true
             command 'cat'
             }
